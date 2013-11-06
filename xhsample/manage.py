@@ -2,7 +2,7 @@
 import os
 import sys
 
-sys.path.insert(0,'F:/Projects/GitProject/django-xheditor')
+sys.path.insert(0,'/path/to/django-xheditor')
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "xhsample.settings")
