@@ -3,7 +3,7 @@ django-xheditor
 
 xheditor: http://xheditor.com/
 
-xhtml editor wrapped for django html content editing.
+xhtml editor wrapped for django html content editing, dev on django1.4.
 
 Warning
 =======
