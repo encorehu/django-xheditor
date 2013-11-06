@@ -15,6 +15,6 @@ Usage
 
 Please see the xhsample project for usage.
 
-modify this line in xhsample project:
+modify this line of manage.py in xhsample project:
 
     sys.path.insert(0,'/path/to/django-xheditor')
