@@ -1,0 +1,8 @@
+{% extends 'news/news_base.html' %}
+
+{% block content%}
+<div class="content">
+    {% if news.summary %}<p>{{ news.summary }}</p>{%endif%}
+    {{ news.content|safe}}
+</div>
+{% endblock %}

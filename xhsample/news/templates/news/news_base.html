@@ -1,0 +1,150 @@
+{% load i18n %}<!doctype html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if (gt IE 6)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
+<head>
+	{% block meta %}
+	<meta charset="{% block meta.charset %}utf-8{% endblock meta.charset %}">
+	<title>{% block title %}title{% endblock %} - {{SITE_NAME}}</title>
+
+	<meta name="description" content="{% block meta.description %}{{ SITE_NAME }}{% endblock meta.description %}" />
+	<meta name="author" content="{% block meta.author %}{{ SITE_NAME }} {% endblock meta.author %}">
+	<meta name="keywords" content="DDTCMS {% block meta.keywords %}{{ SITE_NAME }} {% endblock meta.keywords %}" />
+	<meta name="robots" content="{% block meta.robots %}index,follow{% endblock meta.robots %}" />
+	<meta name="generator" content="django" />
+	<meta name="copyright" content="http://www.{{ SITE_DOMAIN }}/" />
+	{% endblock meta %}
+
+	<!-- Delete these two icon references once you've placed them in the root directory with these file names -->
+
+	<link rel="shortcut icon" href="/favicon.ico"><!-- favicon 16x16 -->
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- apple touch icon 57x57 -->
+
+	{% block css %}<link rel="stylesheet" href="{{ STATIC_URL }}css/html5.css?v=20110303" media="screen" />
+	{% block css.shared %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/default.css?v=20110806" media="screen" />
+	{% endblock css.shared %}
+	{% block css.custom %}{% endblock css.custom %}
+	{% endblock css%}
+
+	{% block js %}
+	{% block js.shared %}
+
+	{% endblock js.shared %}
+	{% block js.custom %}{% endblock js.custom %}
+	{% endblock js%}
+
+	{% block rss %}
+	{% block rss.shared %}{% endblock rss.shared%}
+	{% block rss.custom %}{% endblock rss.custom%}
+	{% endblock rss%}
+
+	{% block head.extra %}{% endblock head.extra%}
+</head>
+
+<!-- If possible, use the body as the container -->
+<!-- The "home" class is an example of a dynamic class created on the server for page-specific targeting -->
+<body class="home" {% block bodyonload %}{% endblock bodyonload %}>
+<section class="wrapper">
+	<!-- ******************************************************************** -->
+	<!-- The content below is for demonstration of some common HTML5 elements  -->
+	<!-- More than likely you'll rip out everything except header/section/footer and start fresh -->
+
+	<!-- First header has an ID so you can give it individual styles, and target stuff inside it -->
+	{% block header %}
+	<section id="mininav">
+		<div>
+			<div id="notice">
+				<marquee onmouseover="this.stop();" onmouseout="this.start();" trueSpeed scrollAmount="1" scrollDelay="21">{% block notice %}公告：网站正在测试中。。。{% endblock %}</marquee>
+			</div>
+
+			<div id="tool">
+				<span class="highlight">
+				<a href="#" title="{% trans "Login" %}">{% trans "Login" %}</a>
+				<a href="#" title="{% trans "Welcome join us!" %}">{% trans "Register" %}</a></span>
+				<a href="#" title="{% trans "Send email to webmaster" %}" style="cursor:help;">{% trans "Forget Password" %}</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- begin:  header  id="topwrapper"  -->
+	<header id="topheader" class="pagewrapper"><!-- begin: topwrapper  -->
+		<div id='logo'>
+			<a href="/" ><img src="{{ STATIC_URL }}images/logo.jpg" alt="{{SITE_NAME}}"/></a>
+		</div>
+
+		<div>
+			<h1>Example.com</h1>
+			<p>Welcome to example.com</p>
+		</div>
+		<div class='clear'></div>
+
+		<!-- begin: navigation #nav --><!-- Main nav, styled by targeting "#hd1 nav"; you can have more than one nav element per page -->
+		<nav  id="nav" class="top-menu">
+			<ul class="navbar-one">
+                <li><a href='/news/'>新闻</a></li>
+                <li><a href='/news/post/'>发布新闻</a></li>
+                <li><a href='/admin/'>Admin</a></li>
+            </ul>
+
+		</nav>
+		<!-- end: navigation #nav-->
+	</header><!--end:topwrapper-->
+	<!-- /header -->
+
+	<!-- begin: breadcrumbs -->
+	<div id="breadcrumbs">
+
+		<span class='float_right'>{% trans "Welcome to DDTCMS!" %}
+		{{ SITE_TIME|date:"Y-m-d, D" }}</span>
+		{% trans "Breadcrumbs" %}: {% block breadcrumbs %}{% for crumb in crumbs %}<a href="{{ crumb.path }}">{% trans crumb.name %}</a>{% if not forloop.last %} &raquo; {% endif %}{% endfor %}{% endblock %}
+
+	</div>
+	<!-- end: breadcrumbs -->
+	{% endblock header%}
+
+
+	<!-- This is the main "div" that wraps the content generically; don't use "section" for this -->
+	<div id="main" class="pagewrapper"><!--begin:midwrapper-->
+        {% block content %} {% endblock content%}
+        {% block extended_content %} {% endblock extended_content%}
+	</div><!-- #main -->
+
+	{% block extended_page %}
+
+	{% endblock extended_page %}
+
+	<!-- The main footer has an ID for targeting, similar to the main header -->
+	<footer id="botmfooter"><!--begin:botmfooter-->
+	<div id="footer">
+
+        <a href="/">返回首页</a>
+        - <a href="#aboutus">关于我们</a>
+        - <a href="#contact">联系方式</a>
+        - <a href="#link">友情链接</a>
+        - <a href="#sitemap.xml">网站地图</a>
+        - <a href="/admin/">后台管理</a>
+        - <a href="#guestbook/">留言</a>
+        <br />
+
+        <p class="copyright">
+                    <br />Copyright &copy; 2008-2012 <a href="/"></a>. All rights reserved. 公司名称DDTCMS&trade;
+        服务热线: 010-01234567890, <span id="credit"><a href="http://www.miibeian.gov.cn" target="_blank">京ICP备10000000号</a>.</span><br />　
+        <strong>未经书面授权，禁止将本站文字、图片、视频进行转载、摘编、复制或建立镜像。如有违反，将追究法律责任。</strong><br />
+​
+        </p><!-- end: #copyright -->
+        <p class="powered">
+            本网站基于 <a href="http://code.google.com/p/ddtcms/" title="基于 Django 构建的网站内容管理系统，由Django梦之队提供技术支持" target="_blank"><strong>DDTCMS</strong></a> 项目修改而成，所有子栏目和应用均为纯正 Django 实现.</span>
+​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+        </p><!-- end: #powered -->
+
+    </div>
+
+
+	</footer><!--end:botmfooter-->
+
+</section>
+
+
+{% block js.extra %}{% endblock js.extra %}
+</body>
+</html>

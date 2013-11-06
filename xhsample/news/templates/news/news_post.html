@@ -1,0 +1,27 @@
+{% extends 'news/news_base.html' %}
+
+{% block page_title %}Your Site - Home{% endblock %}
+{% block page_class %}home-page{% endblock %}
+
+{% block css.custom %}
+{{form.media}}
+{% endblock %}
+
+{% block content%}
+<div class="article">
+    {% if user.is_authenticated %}
+
+    <form  id="createform" name="form1" enctype="multipart/form-data"  action="/news/post/" method="post">
+
+    <table class="full">
+    <tbody>{{ form }}</tbody>
+    </table>
+
+    <input type="submit" value="提交新闻"> <input type="reset" value="重新设置">
+    </form>
+
+    {% else %}
+    <p>发布新闻请<a href='{% url news-post %}'>登录</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}

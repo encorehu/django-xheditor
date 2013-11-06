@@ -1,0 +1,43 @@
+{% extends 'news/news_base.html' %}
+
+{% block content%}
+	<div class="box-top"><h1><span><a href="{%url news_post %}" title="添加一条新闻">发布新闻</a></span>最新新闻列表</h1></div>
+    <div class="box">
+		<ol id="object-list">
+		{% for news in news_list %}
+		<li>
+
+			<h2>
+				<a href="{{news.get_absolute_url}}" title="{{ news.title }}" target="_blank">{{ news.title  }}</a>
+				{%if news.total_attachments%}<img src="{{ STATIC_URL }}images/img.gif" alt="有附件"/>{%endif%}
+			</h2>
+			<img src='{{news.pic_url}}?width=320' border='0' width='211' height='141' alt='{{ news.title }}'></a>
+			<p class="post-date">Post on {{ news.pub_date|date:"Y-m-d" }}</p>
+			<p class="summary"> {{ news.summary }} </p>
+		</li>
+		{% endfor %}
+		</ol>
+	</div>
+	<div class="box-bot"><span></span></div>
+
+	{% if is_paginated %}
+		<p>
+			{% if has_previous %}
+				<a href="?page={{ previous }}">&laquo; Previous</a> |
+			{% endif %}
+
+			{% for p in page_range %}
+				{% ifequal page p  %}
+					<span class="current page">{{ p }}</span>
+				{% else %}
+					<a href="?page={{ p }}">{{ p }}</a>
+				{% endifequal %}
+			{% endfor %}
+
+			{% if has_next %}
+				| <a href="?page={{ next }}">Next &raquo;</a>
+			{% endif %}
+		</p>
+	{% endif %}
+
+{% endblock %}
